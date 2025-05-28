@@ -26,11 +26,13 @@ export class DatabasePostgres {
         `
     }
 
-    update(id, video) {
-        // implementar depois
+    async update(id, video) {
+        const { title, description, duration } = video
+
+        await sql`update videos set title = ${title}, description = ${description}, duration = ${duration} WHERE id = ${id}`
     }
 
-    delete(id) {
-        // implementar depois
+    async delete(id) {
+        await sql`delete from videos where id = ${id}`
     }
 }
